@@ -7,6 +7,7 @@ const { UserAdmin, SSB, Siswa, JadwalLatihan, JadwalTurnamen } = require('./mode
 const userRoutes = require('./routes/userRoutes');
 const ssbRoutes = require('./routes/ssbRoutes');
 const siswaRoutes = require('./routes/siswaRoutes');
+const jadwalLatihanRoutes = require('./routes/jadwalLatihanRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -23,6 +24,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/user', userRoutes);
 app.use('/api/ssb', ssbRoutes);
 app.use('/api/ssb/:ssb_id/siswa', siswaRoutes);
+app.use('/api/ssb/:ssb_id/jadwal-latihan', jadwalLatihanRoutes);
 
 sequelize.sync({ alter: true, logging: console.log })
   .then(() => console.log('Database synced!'))

@@ -22,13 +22,14 @@ const limiter = rateLimit({
   keyGenerator: (req) => req.ip,
 });
 
+router.use(authGuard);
 router.use(limiter);
 
-router.post("/", authGuard, createSSB);
-router.get("/", authGuard, getAllSsb);
-router.get("/:id/detail", authGuard, getSsbByIdDetail);
+router.post("/", createSSB);
+router.get("/", getAllSsb);
+router.get("/:id/detail", getSsbByIdDetail);
 router.get("/:id", getSsbById);
-router.put("/:id", authGuard, updateSsb);
-router.delete("/:id", authGuard, deleteSsb);
+router.put("/:id", updateSsb);
+router.delete("/:id", deleteSsb);
 
 module.exports = router;

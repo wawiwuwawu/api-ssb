@@ -25,13 +25,14 @@ const limiter = rateLimit({
   keyGenerator: (req) => req.ip,
 });
 
+router.use(authGuard);
 router.use(limiter);
 
 router.post('/register', validateRegistration, registerUser);
 router.post('/login', validateLogin, loginUser);
-router.get('/me', authGuard, getCurrentUser);
-router.put('/me', authGuard, updateCurrentUser);
-router.delete('/me', authGuard, deleteCurrentUser);
+router.get('/me', getCurrentUser);
+router.put('/me', updateCurrentUser);
+router.delete('/me', deleteCurrentUser);
 router.post('/reset-password', validateLogin, resetPassword);
 
 module.exports = router;
