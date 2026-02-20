@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const ssbRoutes = require('./routes/ssbRoutes');
 const siswaRoutes = require('./routes/siswaRoutes');
 const jadwalLatihanRoutes = require('./routes/jadwalLatihanRoutes');
+const jadwalTurnamenRoutes = require('./routes/jadwalTurnamenRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -25,6 +26,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/ssb', ssbRoutes);
 app.use('/api/ssb/:ssb_id/siswa', siswaRoutes);
 app.use('/api/ssb/:ssb_id/jadwal-latihan', jadwalLatihanRoutes);
+app.use('/api/ssb/:ssb_id/jadwal-turnamen', jadwalTurnamenRoutes);
 
 sequelize.sync({ alter: true, logging: console.log })
   .then(() => console.log('Database synced!'))

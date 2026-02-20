@@ -22,6 +22,20 @@ module.exports = (sequelize, DataTypes) => {
           isDate: { msg: "Format tanggal tidak valid (YYYY-MM-DD)" }
         }
       },
+      time_start: { 
+        type: DataTypes.TIME, 
+        allowNull: false,
+        validate: { 
+          notEmpty: { msg: "Waktu mulai tidak boleh kosong" }
+        }
+      },
+      time_end: { 
+        type: DataTypes.TIME, 
+        allowNull: false,
+        validate: { 
+          notEmpty: { msg: "Waktu selesai tidak boleh kosong" }
+        }
+      },
       age_grouping: {
         type: DataTypes.ENUM("U-10", "U-12", "U-15", "U-17", "U-20", "Senior"),
         allowNull: false,

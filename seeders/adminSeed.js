@@ -11,5 +11,3 @@ module.exports = {
       await queryInterface.bulkDelete("UserAdmin", null, {});
     },
   };
-
-  // npx sequelize-cli db:seed:all
