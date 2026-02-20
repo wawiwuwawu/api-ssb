@@ -3,7 +3,7 @@ services:
     build: .
     container_name: api-database-ssb
     ports:
-      - "5010:5000"
+      - "5012:5000"
     env_file:
       - ./.env
     # volumes:
