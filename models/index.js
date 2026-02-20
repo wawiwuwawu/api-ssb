@@ -5,6 +5,8 @@ const { DataTypes } = require('sequelize');
 const UserAdmin = require('./UserAdmin')(sequelize, DataTypes);
 const SSB = require('./SSB')(sequelize, DataTypes);
 const Siswa = require('./Siswa')(sequelize, DataTypes);
+const JadwalLatihan = require('./JadwalLatihan')(sequelize, DataTypes);
+const JadwalTurnamen = require('./JadwalTurnamen')(sequelize, DataTypes);
 
 // UserAdmin has many SSB (One-to-Many)
 UserAdmin.hasMany(SSB, {
@@ -32,10 +34,39 @@ Siswa.belongsTo(SSB, {
   onDelete: 'CASCADE'
 });
 
+// SSB has many JadwalLatihan (One-to-Many)
+SSB.hasMany(JadwalLatihan, {
+  foreignKey: 'ssb_id',
+  as: 'jadwal_latihan',
+  onDelete: 'CASCADE'
+});
+
+JadwalLatihan.belongsTo(SSB, {
+  foreignKey: 'ssb_id',
+  as: 'ssb',
+  onDelete: 'CASCADE'
+});
+
+// SSB has many JadwalTurnamen (One-to-Many)
+SSB.hasMany(JadwalTurnamen, {
+  foreignKey: 'ssb_id',
+  as: 'jadwal_turnamen',
+  onDelete: 'CASCADE'
+});
+
+JadwalTurnamen.belongsTo(SSB, {
+  foreignKey: 'ssb_id',
+  as: 'ssb',
+  onDelete: 'CASCADE'
+});
+
 // Export models
 module.exports = {
   sequelize,
   UserAdmin,
   SSB,
   Siswa,
+  JadwalLatihan,
+  JadwalTurnamen,
+  UserAdmin
 };

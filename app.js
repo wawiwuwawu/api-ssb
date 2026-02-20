@@ -3,7 +3,7 @@ console.log(process.env.DB_HOST);
 const cors = require('cors');
 const express = require('express');
 const sequelize = require('./config/sequelize');
-const { UserAdmin, SSB, Siswa } = require('./models');
+const { UserAdmin, SSB, Siswa, JadwalLatihan, JadwalTurnamen } = require('./models');
 const userRoutes = require('./routes/userRoutes');
 const ssbRoutes = require('./routes/ssbRoutes');
 const siswaRoutes = require('./routes/siswaRoutes');
