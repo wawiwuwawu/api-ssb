@@ -5,6 +5,8 @@ const express = require('express');
 const sequelize = require('./config/sequelize');
 const { UserAdmin, SSB, Siswa } = require('./models');
 const userRoutes = require('./routes/userRoutes');
+const ssbRoutes = require('./routes/ssbRoutes');
+// const siswaRoutes = require('./routes/siswaRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/user', userRoutes);
+app.use('/api/ssb', ssbRoutes);
+// app.use('/api/siswa', siswaRoutes);
 
 sequelize.sync({ alter: true, logging: console.log })
   .then(() => console.log('Database synced!'))
