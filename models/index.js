@@ -5,8 +5,6 @@ const { DataTypes } = require('sequelize');
 const UserAdmin = require('./UserAdmin')(sequelize, DataTypes);
 const SBB = require('./SBB')(sequelize, DataTypes);
 const Siswa = require('./Siswa')(sequelize, DataTypes);
-const SiswaSbb = require('./SiswaSbb')(sequelize, DataTypes);
-const AdminSbbList = require('./AdminSbbList')(sequelize, DataTypes);
 
 // UserAdmin has many SBB (One-to-Many)
 UserAdmin.hasMany(SBB, {
@@ -40,6 +38,4 @@ module.exports = {
   UserAdmin,
   SBB,
   Siswa,
-  SiswaSbb,
-  AdminSbbList
 };

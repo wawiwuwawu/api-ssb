@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         references: { model: "user_admin", key: "id" },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-      }
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+      },
     },
     {
       tableName: "SBB",
