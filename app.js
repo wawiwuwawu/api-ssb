@@ -3,8 +3,8 @@ console.log(process.env.DB_HOST);
 const cors = require('cors');
 const express = require('express');
 const sequelize = require('./config/sequelize');
-const { UserAdmin, SBB, Siswa } = require('./models'); // Import models
-// const userRoutes = require('./routes/userRoutes');
+const { UserAdmin, SSB, Siswa } = require('./models');
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use('/api/user', userRoutes);
+app.use('/api/user', userRoutes);
 
 sequelize.sync({ alter: true, logging: console.log })
   .then(() => console.log('Database synced!'))

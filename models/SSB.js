@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const SBB = sequelize.define(
-    "SBB",
+  const SSB = sequelize.define(
+    "SSB",
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, },
       name: { type: DataTypes.STRING, allowNull: false, 
@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "SBB",
+      tableName: "SSB",
       timestamps: false
     }
   );
 
 
-  return SBB;
+  return SSB;
 };

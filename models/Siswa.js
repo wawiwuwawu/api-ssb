@@ -1,4 +1,3 @@
-// models/Seiyu.js
 module.exports = (sequelize, DataTypes) => {
   const Siswa = sequelize.define(
     "siswa",
@@ -22,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
         allowNull: true,
       },
-      sbb_id: {
+      ssb_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: { model: "SBB", key: "id" },
+        references: { model: "SSB", key: "id" },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
