@@ -32,6 +32,6 @@ router.post('/login', validateLogin, loginUser);
 router.get('/me', authGuard, getCurrentUser);
 router.put('/me', authGuard, updateCurrentUser);
 router.delete('/me', authGuard, deleteCurrentUser);
-router.post('/reset-password', resetPassword);
+router.post('/reset-password', validateLogin, resetPassword);
 
 module.exports = router;

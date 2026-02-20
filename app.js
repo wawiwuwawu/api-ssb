@@ -6,7 +6,7 @@ const sequelize = require('./config/sequelize');
 const { UserAdmin, SSB, Siswa } = require('./models');
 const userRoutes = require('./routes/userRoutes');
 const ssbRoutes = require('./routes/ssbRoutes');
-// const siswaRoutes = require('./routes/siswaRoutes');
+const siswaRoutes = require('./routes/siswaRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,9 +15,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Static file serving untuk foto siswa
+app.use('/uploads', express.static('uploads'));
+
+// Routes
 app.use('/api/user', userRoutes);
 app.use('/api/ssb', ssbRoutes);
-// app.use('/api/siswa', siswaRoutes);
+app.use('/api/ssb/:ssb_id/siswa', siswaRoutes);
 
 sequelize.sync({ alter: true, logging: console.log })
   .then(() => console.log('Database synced!'))

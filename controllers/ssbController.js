@@ -1,6 +1,18 @@
 const { SSB, Siswa } = require("../models");
 const { sequelize } = require("../models");
 
+// Helper function untuk format foto URL siswa
+const formatSiswaFoto = (siswa, req) => {
+  const siswaData = siswa.toJSON ? siswa.toJSON() : siswa;
+  
+  if (siswaData.foto) {
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const fotoPath = siswaData.foto.replace(/\\/g, '/');
+    siswaData.foto = `${baseUrl}/${fotoPath}`;
+  }
+  
+  return siswaData;
+};
 
 const errorResponse = (res, status, message) => {
   return res.status(status).json({ success: false, error: message });
@@ -162,6 +174,9 @@ const getSsbByIdDetail = async (req, res) => {
       penyerang: siswas.filter(s => s.position === 'Penyerang').length
     };
 
+    // Format foto URL untuk setiap siswa
+    const siswaWithFormattedFoto = siswas.map(s => formatSiswaFoto(s, req));
+
     return res.status(200).json({
       success: true,
       data: {
@@ -170,7 +185,7 @@ const getSsbByIdDetail = async (req, res) => {
         created_at: ssb.created_at,
         jumlah_siswa: siswas.length,
         statistik_posisi: statistikPosisi,
-        siswa: siswas
+        siswa: siswaWithFormattedFoto
       }
     });
 

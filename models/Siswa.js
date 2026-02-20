@@ -8,9 +8,12 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Nama tidak boleh kosong" },
         },
       },
-      age: { type: DataTypes.DATEONLY,
+      age: { 
+        type: DataTypes.INTEGER,
+        allowNull: true,
         validate: {
-          isDate: { msg: "Format tanggal tidak valid (YYYY-MM-DD)" },
+          min: { args: [5], msg: "Umur minimal 5 tahun" },
+          max: { args: [25], msg: "Umur maksimal 25 tahun" },
         },
       },
       position: {
@@ -20,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       foto: {
         type: DataTypes.STRING(255),
         allowNull: true,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
       ssb_id: {
         type: DataTypes.INTEGER,
