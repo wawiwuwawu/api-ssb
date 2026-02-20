@@ -13,7 +13,7 @@ const {
     deleteCurrentUser
 } = require('../controllers/userController');
 
-const { validateRegistration, validateLogin } = require('../middlewares/validation');
+const { validateRegistration, validateLogin, validateResetPassword } = require('../middlewares/validation');
 const rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
@@ -25,14 +25,18 @@ const limiter = rateLimit({
   keyGenerator: (req) => req.ip,
 });
 
-router.use(authGuard);
+
 router.use(limiter);
 
 router.post('/register', validateRegistration, registerUser);
 router.post('/login', validateLogin, loginUser);
+router.post('/reset-password', validateResetPassword, resetPassword);
+
+
+router.use(authGuard);
+
 router.get('/me', getCurrentUser);
 router.put('/me', updateCurrentUser);
 router.delete('/me', deleteCurrentUser);
-router.post('/reset-password', validateLogin, resetPassword);
 
 module.exports = router;

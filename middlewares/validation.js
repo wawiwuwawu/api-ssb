@@ -22,7 +22,16 @@ const validateLogin = [
     .notEmpty().withMessage('Password wajib diisi')
 ];
 
+const validateResetPassword = [
+  body('email')
+    .isEmail().withMessage('Email tidak valid')
+    .normalizeEmail(),
+  body('newPassword')
+    .isLength({ min: 6 }).withMessage('Password baru minimal 6 karakter')
+];
+
 module.exports = { 
     validateRegistration,
-    validateLogin
+    validateLogin,
+    validateResetPassword
 };
