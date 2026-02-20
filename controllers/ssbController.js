@@ -146,7 +146,7 @@ const getSsbByIdDetail = async (req, res) => {
         {
           model: Siswa,
           as: 'siswas',
-          attributes: ['id', 'name', 'age', 'position', 'foto', 'created_at']
+          attributes: ['id', 'name', 'age', 'position', 'foto', 'created_at', 'isActive']
         }
       ]
     });
