@@ -1,7 +1,7 @@
 services:
-  app-api-sbb:
+  app-api-ssb:
     build: .
-    container_name: api-database-sbb
+    container_name: api-database-ssb
     ports:
       - "5010:5000"
     env_file:
